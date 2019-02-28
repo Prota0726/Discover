@@ -18,16 +18,21 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" runat="server">
       <img class="mb-4" src="img/analysis.ico" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">請登入</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="帳號" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="密碼" required>
       
-      <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
+        <asp:TextBox ID="account" runat="server"  class="form-control" placeholder="帳號" ></asp:TextBox>
+        <asp:RequiredFieldValidator   ControlToValidate="account"   Text="帳號是必填的！"  runat="server" />
+       <label for="inputPassword" class="sr-only">Password</label>
+       
+        <asp:TextBox ID="password" runat="server"  class="form-control" placeholder="密碼" ></asp:TextBox>
+        <asp:RequiredFieldValidator   ControlToValidate="password"   Text="密碼是必填的！"  runat="server" />
+       <br>
+        <asp:Button ID="Button1" runat="server" Text="登入" class="btn btn-lg btn-primary btn-block" OnClick="Button1_Click" />
       <p class="mt-5 mb-3 text-muted">Copyright &copy; Discover 2018</p>
+       
     </form>
   </body>
 </html>
