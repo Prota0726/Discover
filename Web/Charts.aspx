@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="table.aspx.cs" Inherits="table" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Charts.aspx.cs" Inherits="index" %>
 
 <!DOCTYPE html>
 
@@ -84,7 +84,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="charts.aspx">
                   <i class="fas fa-fw fa-chart-area"></i>
-                  <span>Charts</span></a>
+                  <span>Chart</span></a>
               </li>
 
               <!-- Nav Item - Tables -->
@@ -118,62 +118,34 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">  <a target="_blank" href="https://datatables.net"> </a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Charts</h1>
+          <p class="mb-4">每月使用者人數統計表</p>
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">登入紀錄</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                
-                 <asp:GridView ID="GridView1"  class="table table-bordered" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-                     <Columns>
-                         <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" />
-                         <asp:BoundField DataField="帳號" HeaderText="帳號" SortExpression="帳號" />
-                         <asp:BoundField DataField="號碼" HeaderText="號碼" SortExpression="號碼" />
-                         <asp:BoundField DataField="開始時間" HeaderText="開始時間" SortExpression="開始時間" />
-                         <asp:BoundField DataField="通話秒數" HeaderText="通話秒數" SortExpression="通話秒數" />
-                         <asp:BoundField DataField="非監察對象IP" HeaderText="非監察對象IP" SortExpression="非監察對象IP" />
-                         <asp:BoundField DataField="非監察對象Port" HeaderText="非監察對象Port" SortExpression="非監察對象Port" />
-                         <asp:BoundField DataField="分析開始時間" HeaderText="分析開始時間" SortExpression="分析開始時間" />
-                         <asp:BoundField DataField="分析結束時間" HeaderText="分析結束時間" SortExpression="分析結束時間" />
-                         <asp:BoundField DataField="通訊軟體類型" HeaderText="通訊軟體類型" SortExpression="通訊軟體類型" />
-                         <asp:BoundField DataField="是否視訊" HeaderText="是否視訊" SortExpression="是否視訊" />
-                     </Columns>
-                    </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:數據分析資料庫ConnectionString %>" SelectCommand="SELECT * FROM [通訊軟體分析結果]"></asp:SqlDataSource>
-                
+          <!-- Content Row -->
+          <div class="row">
+
+            <div class="col-xl-12 col-lg-12">
+
+              
+
+              <!-- Bar Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                </div>
+                <div class="card-body">
+                  <div class="chart-bar">            
+                    <canvas id="myBarChart"></canvas>
+                      <asp:HiddenField ID="HiddenField1" runat="server" />
+                  </div>
+                  
+                </div>
               </div>
+			  
+
             </div>
-          </div>
-            <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">登入紀錄</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-                    <Columns>
-                        <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" />
-                        <asp:BoundField DataField="帳號" HeaderText="帳號" SortExpression="帳號" />
-                        <asp:BoundField DataField="號碼" HeaderText="號碼" SortExpression="號碼" />
-                        <asp:BoundField DataField="開始時間" HeaderText="開始時間" SortExpression="開始時間" />
-                        <asp:BoundField DataField="通話秒數" HeaderText="通話秒數" SortExpression="通話秒數" />
-                        <asp:BoundField DataField="非監察對象IP" HeaderText="非監察對象IP" SortExpression="非監察對象IP" />
-                        <asp:BoundField DataField="非監察對象Port" HeaderText="非監察對象Port" SortExpression="非監察對象Port" />
-                        <asp:BoundField DataField="分析開始時間" HeaderText="分析開始時間" SortExpression="分析開始時間" />
-                        <asp:BoundField DataField="分析結束時間" HeaderText="分析結束時間" SortExpression="分析結束時間" />
-                        <asp:BoundField DataField="通訊軟體類型" HeaderText="通訊軟體類型" SortExpression="通訊軟體類型" />
-                        <asp:BoundField DataField="是否視訊" HeaderText="是否視訊" SortExpression="是否視訊" />
-                    </Columns>
-                  </asp:GridView>
-                
-                
-              </div>
-            </div>
+
+            
           </div>
 
         </div>
@@ -239,11 +211,12 @@
 
   <!-- Page level custom scripts -->
   
+  <!--script src="dashboard/js/demo/chart-pie-demo.js"></!--script-->
     
+  
+  <script src="js/demo/chart-bar-demo.js"></script>
 
-
-
- 
+  <!-- Chart Pie -->
+  
 </body>
 </html>
-
