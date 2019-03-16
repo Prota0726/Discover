@@ -19,9 +19,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="css/table.css" rel="stylesheet" />
 
-
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
 </head>
@@ -119,7 +119,10 @@
 
                         <!-- Page Heading -->
                         <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                        <p class="mb-4"><a target="_blank" href="https://datatables.net"></a>.</p>
+                        <p class="mb-4">
+                            <a target="_blank" href="https://datatables.net"></a>.
+                           
+                        </p>
 
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
@@ -128,8 +131,36 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dataTables_length" id="dataTable_length">
+                                                <label>
+                                                    Show                                                   
+                                                        <asp:DropDownList ID="DropDownList1" runat="server" class="custom-select custom-select-sm form-control form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                                                            <asp:ListItem Selected="True">5</asp:ListItem>
+                                                            <asp:ListItem>10</asp:ListItem>
+                                                            <asp:ListItem>15</asp:ListItem>
+                                                            <asp:ListItem>20</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    entries                                                          
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-5">
+                                            <label>
+                                                日期:                                                   
+                                                 <asp:TextBox ID="TextBox1" runat="server" class="custom-select custom-select-sm form-control form-control-sm"></asp:TextBox>
+                                                到
+                                                 <asp:TextBox ID="TextBox2" runat="server" class="custom-select custom-select-sm form-control form-control-sm"></asp:TextBox>
+                                            </label>
+                                            <asp:Button ID="Button1" runat="server" Text="搜尋" class="btn btn-success" OnClick="Button1_Click"/>
+                                        </div>
+                                        
+                                            
+                                        
+                                    </div>
                                     <asp:GridView ID="GridView3"
-                                        class="table table-bordered" runat="server" AllowPaging="True" PageSize="5" AllowCustomPaging="True" OnPageIndexChanging="GridView3_PageIndexChanging" AllowSorting="True" OnSorting="TaskGridView_Sorting" onrowdatabound="GridView3_RowDataBound">
+                                        class="table table-bordered" runat="server" AllowPaging="True" PageSize="5" AllowCustomPaging="True" OnPageIndexChanging="GridView3_PageIndexChanging" AllowSorting="True" OnSorting="TaskGridView_Sorting" OnRowDataBound="GridView3_RowDataBound">
                                         <PagerSettings Mode="NumericFirstLast" FirstPageText="第一頁" LastPageText="最後一頁" />
                                     </asp:GridView>
                                 </div>
@@ -199,9 +230,18 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    
-
+    <script>
+        $(function () {
+            $("#TextBox1").datepicker({
+                dateFormat: "yy/mm/dd"
+            });
+            $("#TextBox2").datepicker({
+                dateFormat: "yy/mm/dd"
+            });
+        });
+  </script>
 
 
 </body>

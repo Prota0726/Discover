@@ -12,7 +12,7 @@ public partial class table : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
-        {
+        {          
             GridView3.VirtualItemCount = MIS2000Lab_GetPageCount();  // 取得總記錄的數量。
             Session["TaskTable"] = MIS2000Lab_GetPageData(0);
             GridView3.DataSource = Session["TaskTable"];
@@ -76,12 +76,28 @@ public partial class table : System.Web.UI.Page
 
 
 
-    protected DataTable MIS2000Lab_GetPageData(int currentPage)
+    protected DataTable MIS2000Lab_GetPageData(int currentPage )
     {
+        string date_beging= "";
+        string date_end = "";
+        if (IsDate(TextBox1.Text) && IsDate(TextBox2.Text))
+        {
+            date_beging = TextBox1.Text.Replace("/", "").ToString();
+            date_end = TextBox2.Text.Replace("/", "").ToString();
+            if (int.Parse(date_beging) > int.Parse(date_end))
+            {
+                date_beging = date_end;
+                date_end = TextBox1.Text.Replace("/", "").ToString();
+            }
+        }
+        String SqlStr = "SELECT * FROM 通訊軟體分析結果 order by ID";
+        if (date_beging != "" && date_end != "")
+            SqlStr = "SELECT * FROM 通訊軟體分析結果  where 分析開始時間 between '" + date_beging + " 00:00:00.000' and '" + date_end + " 23:59:59.999' order by ID";
         SqlConnection Conn = new SqlConnection(@"Data Source=ccweng\ccweng;Initial Catalog=" + "數據分析資料庫" + ";Integrated Security=True");
         SqlDataReader dr = null;
-
-        String SqlStr = "SELECT * FROM 通訊軟體分析結果 order by ID";
+        
+       
+            
         SqlStr += " OFFSET " + (currentPage * GridView3.PageSize) + " ROWS FETCH NEXT " + GridView3.PageSize + " ROWS ONLY";
         //==SQL 2012 指令的 Offset...Fetch。
 
@@ -202,5 +218,36 @@ public partial class table : System.Web.UI.Page
         }
     }
 
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GridView3.PageSize = int.Parse(DropDownList1.SelectedItem.Value);
+        Session["TaskTable"] = MIS2000Lab_GetPageData(0);
+        GridView3.DataSource = Session["TaskTable"];
+        GridView3.DataBind();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        
+
+        Session["TaskTable"] = MIS2000Lab_GetPageData(0);
+        GridView3.DataSource = Session["TaskTable"];
+        GridView3.DataBind();
+
+    }
+
+
+    public bool IsDate(string strDate)
+    {
+        try
+        {
+            DateTime.Parse(strDate);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 
 }
