@@ -1,6 +1,16 @@
 ﻿#Button1 {
     margin-left:40px;
 }
+#Button2 {
+    margin-left:40px;
+}
 #GridView3 {
-    margin-top:10px;
+    margin-top:1px;
+}
+
+#date_selector {
+    white-space: nowrap; /* 不斷行 */
+}
+#UpdatePanel2{
+    margin-top:2px;
 }

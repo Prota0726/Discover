@@ -22,11 +22,11 @@
     <link href="css/table.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
 </head>
 <body id="page-top">
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
         <!-- Page Wrapper -->
         <div id="wrapper">
 
@@ -132,41 +132,115 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6">
+                                        <div class="col-sm-12 col-md-5">
                                             <div class="dataTables_length" id="dataTable_length">
-                                                <label>
-                                                    Show                                                   
-                                                        <asp:DropDownList ID="DropDownList1" runat="server" class="custom-select custom-select-sm form-control form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                                                            <asp:ListItem Selected="True">5</asp:ListItem>
-                                                            <asp:ListItem>10</asp:ListItem>
-                                                            <asp:ListItem>15</asp:ListItem>
-                                                            <asp:ListItem>20</asp:ListItem>
-                                                        </asp:DropDownList>
-                                                    entries                                                          
-                                                </label>
+                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                    <ContentTemplate>
+                                                        <label>
+                                                            Show    
+                                                        
+                                                                <asp:DropDownList ID="DropDownList1" runat="server" class="custom-select custom-select-sm form-control form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                                                                    <asp:ListItem Selected="True">5</asp:ListItem>
+                                                                    <asp:ListItem>10</asp:ListItem>
+                                                                    <asp:ListItem>15</asp:ListItem>
+                                                                    <asp:ListItem>20</asp:ListItem>
+                                                                </asp:DropDownList>
+
+                                                            entries                                                          
+                                                        </label>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-5">
+                                        <div class="col-sm-12 col-md-7" style="display:inline-block;" id="date_selector">
+
                                             <label>
                                                 日期:                                                   
                                                  <asp:TextBox ID="TextBox1" runat="server" class="custom-select custom-select-sm form-control form-control-sm"></asp:TextBox>
                                                 到
                                                  <asp:TextBox ID="TextBox2" runat="server" class="custom-select custom-select-sm form-control form-control-sm"></asp:TextBox>
                                             </label>
-                                            <asp:Button ID="Button1" runat="server" Text="搜尋" class="btn btn-success" OnClick="Button1_Click"/>
+                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server" style="display:inline-block;">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="Button1" runat="server" Text="搜尋" class="btn btn-success" OnClick="Button1_Click" />
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
-                                        
-                                            
-                                        
+
+
+
                                     </div>
-                                    <asp:GridView ID="GridView3"
-                                        class="table table-bordered" runat="server" AllowPaging="True" PageSize="5" AllowCustomPaging="True" OnPageIndexChanging="GridView3_PageIndexChanging" AllowSorting="True" OnSorting="TaskGridView_Sorting" OnRowDataBound="GridView3_RowDataBound">
-                                        <PagerSettings Mode="NumericFirstLast" FirstPageText="第一頁" LastPageText="最後一頁" />
-                                    </asp:GridView>
+                                    <br/>
+                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                        <ContentTemplate>
+                                            <asp:GridView ID="GridView3"
+                                                class="table table-bordered" runat="server" AllowPaging="True" PageSize="5" AllowCustomPaging="True" OnPageIndexChanging="GridView3_PageIndexChanging" AllowSorting="True" OnSorting="TaskGridView_Sorting" OnRowDataBound="GridView3_RowDataBound">
+                                                <PagerSettings Mode="NumericFirstLast" FirstPageText="第一頁" LastPageText="最後一頁" />
+                                            </asp:GridView>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                                 </div>
                             </div>
                         </div>
 
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">登入紀錄</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="dataTables_length" >
+                                                <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                                                    <ContentTemplate>
+                                                        <label>
+                                                            Show    
+                                                        
+                                                                <asp:DropDownList ID="DropDownList2" runat="server" class="custom-select custom-select-sm form-control form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
+                                                                    <asp:ListItem Selected="True">5</asp:ListItem>
+                                                                    <asp:ListItem>10</asp:ListItem>
+                                                                    <asp:ListItem>15</asp:ListItem>
+                                                                    <asp:ListItem>20</asp:ListItem>
+                                                                </asp:DropDownList>
+
+                                                            entries                                                          
+                                                        </label>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-7" style="display:inline-block;" id="date_selector">
+
+                                            <label>
+                                                日期:                                                   
+                                                 <asp:TextBox ID="TextBox3" runat="server" class="custom-select custom-select-sm form-control form-control-sm"></asp:TextBox>
+                                                到
+                                                 <asp:TextBox ID="TextBox4" runat="server" class="custom-select custom-select-sm form-control form-control-sm"></asp:TextBox>
+                                            </label>
+                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" style="display:inline-block;">
+                                                <ContentTemplate>
+                                                    <asp:Button ID="Button2" runat="server" Text="搜尋" class="btn btn-success" OnClick="Button2_Click" />
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+
+
+
+                                    </div>
+                                    <br/>
+                                    <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                                        <ContentTemplate>
+                                            <asp:GridView ID="GridView1"
+                                                class="table table-bordered" runat="server" AllowPaging="True" PageSize="5" AllowCustomPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" AllowSorting="True" OnSorting="GridView1_Sorting" OnRowDataBound="GridView1_RowDataBound">
+                                                <PagerSettings Mode="NumericFirstLast" FirstPageText="第一頁" LastPageText="最後一頁" />
+                                            </asp:GridView>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <!-- /.container-fluid -->
@@ -190,6 +264,7 @@
         </div>
         <!-- End of Page Wrapper -->
         <!-- Scroll to Top Button-->
+
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
@@ -240,8 +315,14 @@
             $("#TextBox2").datepicker({
                 dateFormat: "yy/mm/dd"
             });
+            $("#TextBox3").datepicker({
+                dateFormat: "yy/mm/dd"
+            });
+            $("#TextBox4").datepicker({
+                dateFormat: "yy/mm/dd"
+            });
         });
-  </script>
+    </script>
 
 
 </body>
